@@ -13,9 +13,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace ClassLibrary
 {
+    [DataContract]
     public class Assignment
     {
         #region member variables
@@ -25,16 +27,19 @@ namespace ClassLibrary
         #endregion
 
         #region properties
+        [DataMember(Name = "name")]
         public string Name
         {
             get { return name; }
             set { name = value; }
         }
+        [DataMember(Name = "description")]
         public string Description
         {
             get { return description; }
             set { description = value; }
         }
+        [DataMember(Name = "categoryName")]
         public string CategoryName
         {
             get { return categoryName; }

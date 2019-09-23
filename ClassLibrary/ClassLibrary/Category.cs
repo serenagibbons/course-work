@@ -13,9 +13,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace ClassLibrary
 {
+    [DataContract]
     public class Category
     {
         #region member variables
@@ -24,11 +26,13 @@ namespace ClassLibrary
         #endregion
 
         #region properities
+        [DataMember(Name = "name")]
         public string Name
         {
             get { return name; }
             set { name = value; }
         }
+        [DataMember(Name = "percentage")]
         public double Percentage
         {
             get { return percentage; }
