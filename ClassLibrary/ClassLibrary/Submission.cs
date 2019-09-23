@@ -17,6 +17,7 @@ using System.Runtime.Serialization;
 
 namespace ClassLibrary
 {
+    [DataContract]
     class Submission
     {
         #region member variables
@@ -26,16 +27,19 @@ namespace ClassLibrary
         #endregion
 
         #region properties
+        [DataMember(Name = "categoryName")]
         public string CategoryName
         {
             get { return categoryName; }
             set { categoryName = value; }
         }
+        [DataMember(Name = "assignmentName")]
         public string AssignmentName
         {
             get { return assignmentName; }
             set { assignmentName = value; }
         }
+        [DataMember(Name = "grade")]
         public double Grade
         {
             get { return grade; }
