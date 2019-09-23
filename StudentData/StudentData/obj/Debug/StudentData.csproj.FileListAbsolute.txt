@@ -1,0 +1,20 @@
+C:\Users\seren\OneDrive\Documents\New folder\StudentData\StudentData\bin\Debug\StudentData.exe.config
+C:\Users\seren\OneDrive\Documents\New folder\StudentData\StudentData\bin\Debug\StudentData.exe
+C:\Users\seren\OneDrive\Documents\New folder\StudentData\StudentData\bin\Debug\StudentData.pdb
+C:\Users\seren\OneDrive\Documents\New folder\StudentData\StudentData\bin\Debug\ClassLibrary.dll
+C:\Users\seren\OneDrive\Documents\New folder\StudentData\StudentData\bin\Debug\ClassLibrary.pdb
+C:\Users\seren\OneDrive\Documents\New folder\StudentData\StudentData\obj\Debug\StudentData.csprojAssemblyReference.cache
+C:\Users\seren\OneDrive\Documents\New folder\StudentData\StudentData\obj\Debug\StudentData.csproj.CoreCompileInputs.cache
+C:\Users\seren\OneDrive\Documents\New folder\StudentData\StudentData\obj\Debug\StudentData.csproj.CopyComplete
+C:\Users\seren\OneDrive\Documents\New folder\StudentData\StudentData\obj\Debug\StudentData.exe
+C:\Users\seren\OneDrive\Documents\New folder\StudentData\StudentData\obj\Debug\StudentData.pdb
+C:\Users\seren\OneDrive\Documents\BCS426\StudentData\StudentData\obj\Debug\StudentData.csprojAssemblyReference.cache
+C:\Users\seren\OneDrive\Documents\BCS426\StudentData\StudentData\obj\Debug\StudentData.csproj.CoreCompileInputs.cache
+C:\Users\seren\OneDrive\Documents\BCS426\StudentData\StudentData\bin\Debug\StudentData.exe.config
+C:\Users\seren\OneDrive\Documents\BCS426\StudentData\StudentData\bin\Debug\StudentData.exe
+C:\Users\seren\OneDrive\Documents\BCS426\StudentData\StudentData\bin\Debug\StudentData.pdb
+C:\Users\seren\OneDrive\Documents\BCS426\StudentData\StudentData\bin\Debug\ClassLibrary.dll
+C:\Users\seren\OneDrive\Documents\BCS426\StudentData\StudentData\bin\Debug\ClassLibrary.pdb
+C:\Users\seren\OneDrive\Documents\BCS426\StudentData\StudentData\obj\Debug\StudentData.csproj.CopyComplete
+C:\Users\seren\OneDrive\Documents\BCS426\StudentData\StudentData\obj\Debug\StudentData.exe
+C:\Users\seren\OneDrive\Documents\BCS426\StudentData\StudentData\obj\Debug\StudentData.pdb

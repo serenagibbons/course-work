@@ -1,0 +1,12 @@
+C:\Users\seren\OneDrive\Documents\New folder\ClassLibrary\ClassLibrary\bin\Debug\ClassLibrary.dll
+C:\Users\seren\OneDrive\Documents\New folder\ClassLibrary\ClassLibrary\bin\Debug\ClassLibrary.pdb
+C:\Users\seren\OneDrive\Documents\New folder\ClassLibrary\ClassLibrary\obj\Debug\ClassLibrary.csprojAssemblyReference.cache
+C:\Users\seren\OneDrive\Documents\New folder\ClassLibrary\ClassLibrary\obj\Debug\ClassLibrary.csproj.CoreCompileInputs.cache
+C:\Users\seren\OneDrive\Documents\New folder\ClassLibrary\ClassLibrary\obj\Debug\ClassLibrary.dll
+C:\Users\seren\OneDrive\Documents\New folder\ClassLibrary\ClassLibrary\obj\Debug\ClassLibrary.pdb
+C:\Users\seren\OneDrive\Documents\BCS426\ClassLibrary\ClassLibrary\bin\Debug\ClassLibrary.dll
+C:\Users\seren\OneDrive\Documents\BCS426\ClassLibrary\ClassLibrary\bin\Debug\ClassLibrary.pdb
+C:\Users\seren\OneDrive\Documents\BCS426\ClassLibrary\ClassLibrary\obj\Debug\ClassLibrary.csprojAssemblyReference.cache
+C:\Users\seren\OneDrive\Documents\BCS426\ClassLibrary\ClassLibrary\obj\Debug\ClassLibrary.csproj.CoreCompileInputs.cache
+C:\Users\seren\OneDrive\Documents\BCS426\ClassLibrary\ClassLibrary\obj\Debug\ClassLibrary.dll
+C:\Users\seren\OneDrive\Documents\BCS426\ClassLibrary\ClassLibrary\obj\Debug\ClassLibrary.pdb
