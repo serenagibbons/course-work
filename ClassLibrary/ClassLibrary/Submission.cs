@@ -18,7 +18,7 @@ using System.Runtime.Serialization;
 namespace ClassLibrary
 {
     [DataContract]
-    class Submission
+    public class Submission
     {
         #region member variables
         private string categoryName;
