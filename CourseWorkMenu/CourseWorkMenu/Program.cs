@@ -29,7 +29,7 @@ namespace CourseWorkMenu
         static void Main(string[] args)
         {
             string menuSelection;
-            
+
             // instantiate objects to use with serialization/deserialization
             Category category = new Category();
             Assignment assignment = new Assignment();
@@ -70,12 +70,31 @@ namespace CourseWorkMenu
                 switch (menuSelection)
                 {
                     case "1":
+                        // prompt user for file name
+                        Console.Write("Enter a file name to read from: ");
+                        fileName = Console.ReadLine();
+                        // try reading from file, if exception thrown, break
+                        try
+                        {
+                            FileStream cjReader = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                            DataContractJsonSerializer cInputJson;
+                            cInputJson = new DataContractJsonSerializer(typeof(Category));
+                            category = (Category)cInputJson.ReadObject(cjReader);
+                            cjReader.Close();
+                        }
+                        catch (IOException)
+                        {
+                            Console.WriteLine("Invalid file name.\n");
+                            break;
+                        }
                         break;
                     case "2":
                         break;
                     case "3":
+                        // prompt user for file name
                         Console.Write("Enter a file name to write to: ");
                         fileName = Console.ReadLine();
+
                         FileStream cjWriter = new FileStream(fileName, FileMode.Create, FileAccess.Write);
                         DataContractJsonSerializer cjSer;
                         cjSer = new DataContractJsonSerializer(typeof(Category));
@@ -88,10 +107,28 @@ namespace CourseWorkMenu
                         Console.WriteLine(category);
                         break;
                     case "6":
+                        // prompt user for file name
+                        Console.Write("Enter a file name to read from: ");
+                        fileName = Console.ReadLine();
+                        // try reading from file, if exception thrown, break
+                        try
+                        {
+                            FileStream ajReader = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                            DataContractJsonSerializer aInputJson;
+                            aInputJson = new DataContractJsonSerializer(typeof(Assignment));
+                            assignment = (Assignment)aInputJson.ReadObject(ajReader);
+                            ajReader.Close();
+                        }
+                        catch (IOException)
+                        {
+                            Console.WriteLine("Invalid file name.\n");
+                            break;
+                        }
                         break;
                     case "7":
                         break;
                     case "8":
+                        // prompt user for file name
                         Console.Write("Enter a file name to write to: ");
                         fileName = Console.ReadLine();
                         FileStream ajWriter = new FileStream(fileName, FileMode.Create, FileAccess.Write);
@@ -106,6 +143,23 @@ namespace CourseWorkMenu
                         Console.WriteLine(assignment);
                         break;
                     case "11":
+                        // prompt user for file name
+                        Console.Write("Enter a file name to read from: ");
+                        fileName = Console.ReadLine();
+                        // try reading from file, if exception thrown, break
+                        try
+                        {
+                            FileStream sjReader = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                            DataContractJsonSerializer sInputJson;
+                            sInputJson = new DataContractJsonSerializer(typeof(Submission));
+                            submission = (Submission)sInputJson.ReadObject(sjReader);
+                            sjReader.Close();
+                        }
+                        catch (IOException)
+                        {
+                            Console.WriteLine("Invalid file name.\n");
+                            break;
+                        }
                         break;
                     case "12":
                         break;
