@@ -16,14 +16,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Runtime.Serialization;
+using ClassLibrary;
+using System.Runtime.Serialization.Json;
 
 namespace CourseWorkMenu
 {
     class Program
     {
+
         static void Main(string[] args)
         {
             string menuSelection;
+            
+            // instantiate objects to use with serialization/deserialization
+            Category category = new Category();
+            Assignment assignment = new Assignment();
+            Submission submission = new Submission();
+
+            // file names
+            string fileName;
 
             do
             {
@@ -50,6 +63,7 @@ namespace CourseWorkMenu
 
                 // read and store user's selection
                 menuSelection = Console.ReadLine();
+                Console.WriteLine();
 
                 #region unit testing
                 // perform unit testing based on user's input or exit the program
@@ -58,6 +72,56 @@ namespace CourseWorkMenu
                     case "1":
                         break;
                     case "2":
+                        break;
+                    case "3":
+                        Console.Write("Enter a file name to write to: ");
+                        fileName = Console.ReadLine();
+                        FileStream cjWriter = new FileStream(fileName, FileMode.Create, FileAccess.Write);
+                        DataContractJsonSerializer cjSer;
+                        cjSer = new DataContractJsonSerializer(typeof(Category));
+                        cjSer.WriteObject(cjWriter, category);
+                        cjWriter.Close();
+                        break;
+                    case "4":
+                        break;
+                    case "5":
+                        Console.WriteLine(category);
+                        break;
+                    case "6":
+                        break;
+                    case "7":
+                        break;
+                    case "8":
+                        Console.Write("Enter a file name to write to: ");
+                        fileName = Console.ReadLine();
+                        FileStream ajWriter = new FileStream(fileName, FileMode.Create, FileAccess.Write);
+                        DataContractJsonSerializer ajSer;
+                        ajSer = new DataContractJsonSerializer(typeof(Assignment));
+                        ajSer.WriteObject(ajWriter, assignment);
+                        ajWriter.Close();
+                        break;
+                    case "9":
+                        break;
+                    case "10":
+                        Console.WriteLine(assignment);
+                        break;
+                    case "11":
+                        break;
+                    case "12":
+                        break;
+                    case "13":
+                        Console.Write("Enter a file name to write to: ");
+                        fileName = Console.ReadLine();
+                        FileStream sjWriter = new FileStream(fileName, FileMode.Create, FileAccess.Write);
+                        DataContractJsonSerializer sjSer;
+                        sjSer = new DataContractJsonSerializer(typeof(Submission));
+                        sjSer.WriteObject(sjWriter, submission);
+                        sjWriter.Close();
+                        break;
+                    case "14":
+                        break;
+                    case "15":
+                        Console.WriteLine(submission);
                         break;
                     case "16":
                         Console.WriteLine("Exiting program.\n");
