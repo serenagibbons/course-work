@@ -41,7 +41,7 @@ namespace CourseWorkMenu
             do
             {
                 // display menu
-                Console.WriteLine("Course Work Menu");
+                Console.WriteLine("\nCourse Work Menu");
                 Console.WriteLine("-------------------");
                 Console.WriteLine("1 - Read Category from JSON file");
                 Console.WriteLine("2 - Read Category from XML file");
@@ -65,22 +65,21 @@ namespace CourseWorkMenu
                 menuSelection = Console.ReadLine();
                 Console.WriteLine();
 
-                #region unit testing
                 // perform unit testing based on user's input or exit the program
                 switch (menuSelection)
                 {
-                    case "1":
+                    case "1": // Read Category from JSON file
                         // prompt user for file name
                         Console.Write("Enter a file name to read from: ");
                         fileName = Console.ReadLine();
                         // try reading from file, if exception thrown, break
                         try
                         {
-                            FileStream cjReader = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-                            DataContractJsonSerializer cInputJson;
-                            cInputJson = new DataContractJsonSerializer(typeof(Category));
-                            category = (Category)cInputJson.ReadObject(cjReader);
-                            cjReader.Close();
+                            FileStream reader = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                            DataContractJsonSerializer input;
+                            input = new DataContractJsonSerializer(typeof(Category));
+                            category = (Category)input.ReadObject(reader);
+                            reader.Close();
                         }
                         catch (IOException)
                         {
@@ -88,36 +87,72 @@ namespace CourseWorkMenu
                             break;
                         }
                         break;
-                    case "2":
+                    case "2": // Read Category from XML file
+                        // prompt user for file name
+                        Console.Write("Enter a file name to read from: ");
+                        fileName = Console.ReadLine();
+                        // try reading from file, if exception thrown, break
+                        try
+                        {
+                            FileStream reader = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                            DataContractSerializer input;
+                            input = new DataContractSerializer(typeof(Category));
+                            category = (Category)input.ReadObject(reader);
+                            reader.Close();
+                        }
+                        catch (IOException)
+                        {
+                            Console.WriteLine("Invalid file name.\n");
+                            break;
+                        }
                         break;
-                    case "3":
+                    case "3": // Write Category to JSON file
                         // prompt user for file name
                         Console.Write("Enter a file name to write to: ");
                         fileName = Console.ReadLine();
 
+                        // change category variables
+                        category.Name = "Homework";
+                        category.Percentage = 35;
+
+                        // serialization code
                         FileStream cjWriter = new FileStream(fileName, FileMode.Create, FileAccess.Write);
                         DataContractJsonSerializer cjSer;
                         cjSer = new DataContractJsonSerializer(typeof(Category));
                         cjSer.WriteObject(cjWriter, category);
                         cjWriter.Close();
                         break;
-                    case "4":
+                    case "4": // Write Category to XML file
+                        // prompt user for file name
+                        Console.Write("Enter a file name to write to: ");
+                        fileName = Console.ReadLine();
+
+                        // change category variables
+                        category.Name = "Exams";
+                        category.Percentage = 50;
+
+                        // serialization code
+                        FileStream cxWriter = new FileStream(fileName, FileMode.Create, FileAccess.Write);
+                        DataContractSerializer cxSer;
+                        cxSer = new DataContractSerializer(typeof(Category));
+                        cxSer.WriteObject(cxWriter, category);
+                        cxWriter.Close();
                         break;
-                    case "5":
+                    case "5": // Display Category data on screen
                         Console.WriteLine(category);
                         break;
-                    case "6":
+                    case "6": // Read Assignment from JSON file
                         // prompt user for file name
                         Console.Write("Enter a file name to read from: ");
                         fileName = Console.ReadLine();
                         // try reading from file, if exception thrown, break
                         try
                         {
-                            FileStream ajReader = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-                            DataContractJsonSerializer aInputJson;
-                            aInputJson = new DataContractJsonSerializer(typeof(Assignment));
-                            assignment = (Assignment)aInputJson.ReadObject(ajReader);
-                            ajReader.Close();
+                            FileStream reader = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                            DataContractJsonSerializer input;
+                            input = new DataContractJsonSerializer(typeof(Assignment));
+                            assignment = (Assignment)input.ReadObject(reader);
+                            reader.Close();
                         }
                         catch (IOException)
                         {
@@ -125,35 +160,74 @@ namespace CourseWorkMenu
                             break;
                         }
                         break;
-                    case "7":
+                    case "7": // Read Assignment from XML file
+                        // prompt user for file name
+                        Console.Write("Enter a file name to read from: ");
+                        fileName = Console.ReadLine();
+                        // try reading from file, if exception thrown, break
+                        try
+                        {
+                            FileStream reader = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                            DataContractSerializer input;
+                            input = new DataContractSerializer(typeof(Assignment));
+                            assignment = (Assignment)input.ReadObject(reader);
+                            reader.Close();
+                        }
+                        catch (IOException)
+                        {
+                            Console.WriteLine("Invalid file name.\n");
+                            break;
+                        }
                         break;
-                    case "8":
+                    case "8": // Write Assignment to JSON file
                         // prompt user for file name
                         Console.Write("Enter a file name to write to: ");
                         fileName = Console.ReadLine();
+
+                        // change assignment variables
+                        assignment.Name = "Homework 2";
+                        assignment.Description = "Create the submission class. Add serialization to all classes.";
+                        assignment.CategoryName = "Homework";
+
+                        // serialization code
                         FileStream ajWriter = new FileStream(fileName, FileMode.Create, FileAccess.Write);
                         DataContractJsonSerializer ajSer;
                         ajSer = new DataContractJsonSerializer(typeof(Assignment));
                         ajSer.WriteObject(ajWriter, assignment);
                         ajWriter.Close();
                         break;
-                    case "9":
+                    case "9": // Write Assignment to XML file
+                        // prompt user for file name
+                        Console.Write("Enter a file name to write to: ");
+                        fileName = Console.ReadLine();
+
+                        // change assignment variables
+                        assignment.Name = "Exam 1";
+                        assignment.Description = "Test knowledge of chapters 1-4.";
+                        assignment.CategoryName = "Exams";
+
+                        // serialization code
+                        FileStream axWriter = new FileStream(fileName, FileMode.Create, FileAccess.Write);
+                        DataContractSerializer axSer;
+                        axSer = new DataContractSerializer(typeof(Assignment));
+                        axSer.WriteObject(axWriter, assignment);
+                        axWriter.Close();
                         break;
-                    case "10":
+                    case "10": // Display Assignment data on screen
                         Console.WriteLine(assignment);
                         break;
-                    case "11":
+                    case "11": // Read Submission from JSON file
                         // prompt user for file name
                         Console.Write("Enter a file name to read from: ");
                         fileName = Console.ReadLine();
                         // try reading from file, if exception thrown, break
                         try
                         {
-                            FileStream sjReader = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-                            DataContractJsonSerializer sInputJson;
-                            sInputJson = new DataContractJsonSerializer(typeof(Submission));
-                            submission = (Submission)sInputJson.ReadObject(sjReader);
-                            sjReader.Close();
+                            FileStream reader = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                            DataContractJsonSerializer input;
+                            input = new DataContractJsonSerializer(typeof(Submission));
+                            submission = (Submission)input.ReadObject(reader);
+                            reader.Close();
                         }
                         catch (IOException)
                         {
@@ -161,30 +235,68 @@ namespace CourseWorkMenu
                             break;
                         }
                         break;
-                    case "12":
+                    case "12": // Read Submission from XML file
+                        // prompt user for file name
+                        Console.Write("Enter a file name to read from: ");
+                        fileName = Console.ReadLine();
+                        // try reading from file, if exception thrown, break
+                        try
+                        {
+                            FileStream reader = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                            DataContractSerializer input;
+                            input = new DataContractSerializer(typeof(Submission));
+                            submission = (Submission)input.ReadObject(reader);
+                            reader.Close();
+                        }
+                        catch (IOException)
+                        {
+                            Console.WriteLine("Invalid file name.\n");
+                            break;
+                        }
                         break;
-                    case "13":
+                    case "13": // Write Submission to JSON file
                         Console.Write("Enter a file name to write to: ");
                         fileName = Console.ReadLine();
+
+                        // change submission variables
+                        submission.CategoryName = "Homework";
+                        submission.AssignmentName = "Homework 2";
+                        submission.Grade = 100;
+
+                        // serialization code
                         FileStream sjWriter = new FileStream(fileName, FileMode.Create, FileAccess.Write);
                         DataContractJsonSerializer sjSer;
                         sjSer = new DataContractJsonSerializer(typeof(Submission));
                         sjSer.WriteObject(sjWriter, submission);
                         sjWriter.Close();
                         break;
-                    case "14":
+                    case "14": // Write Submission to XML file
+                        // prompt user for file name
+                        Console.Write("Enter a file name to write to: ");
+                        fileName = Console.ReadLine();
+
+                        // change submission variables
+                        submission.CategoryName = "Exams";
+                        submission.AssignmentName = "Exam 1";
+                        submission.Grade = 95;
+
+                        // serialization code
+                        FileStream sxWriter = new FileStream(fileName, FileMode.Create, FileAccess.Write);
+                        DataContractSerializer sxSer;
+                        sxSer = new DataContractSerializer(typeof(Submission));
+                        sxSer.WriteObject(sxWriter, submission);
+                        sxWriter.Close();
                         break;
-                    case "15":
+                    case "15": // Display Submission data on screen
                         Console.WriteLine(submission);
                         break;
-                    case "16":
+                    case "16": // Exit
                         Console.WriteLine("Exiting program.\n");
                         break;
                     default:
                         Console.WriteLine("Invalid input. Please enter a choice from the menu.\n");
                         break;
                 }
-                #endregion
 
             } while (menuSelection != "16"); // display menu until user enters "16" to exit
         }
