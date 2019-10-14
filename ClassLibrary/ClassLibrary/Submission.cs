@@ -27,13 +27,13 @@ namespace ClassLibrary
         #endregion
 
         #region properties
-        [DataMember(Name = "categoryName")]
+        [DataMember(Name = "categoryname")]
         public string CategoryName
         {
             get { return categoryName; }
             set { categoryName = value; }
         }
-        [DataMember(Name = "assignmentName")]
+        [DataMember(Name = "assignmentname")]
         public string AssignmentName
         {
             get { return assignmentName; }

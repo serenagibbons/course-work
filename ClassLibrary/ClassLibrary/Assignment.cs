@@ -39,7 +39,7 @@ namespace ClassLibrary
             get { return description; }
             set { description = value; }
         }
-        [DataMember(Name = "categoryName")]
+        [DataMember(Name = "categoryname")]
         public string CategoryName
         {
             get { return categoryName; }
