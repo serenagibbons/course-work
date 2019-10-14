@@ -3,13 +3,12 @@
 //
 // Purpose: Contains the class definition for Program. Program imports the
 // ClassLibrary DLL containing the classes Category, Assignment, Submission,
-// and CourseWorkUnitTesting. Program displays a menu to select and perform 
+// and CourseWork. Program displays a menu to select and perform 
 // serializationa and deserialization.
 //
 // Written By: Serena Gibbons
 //
 // Compiler: Visual Studio 2017
-//
 //*****************************************************************************
 using System;
 using System.Collections.Generic;
@@ -39,7 +38,7 @@ namespace CourseWorkClassMenu
             do
             {
                 // display menu
-                Console.WriteLine("\nCourse Work Menu");
+                Console.WriteLine("Course Work Menu");
                 Console.WriteLine("-------------------");
                 Console.WriteLine("1 - Read course work from JSON file");
                 Console.WriteLine("2 - Read course work from XML file");
@@ -65,15 +64,22 @@ namespace CourseWorkClassMenu
                         try
                         {
                             FileStream reader = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                            StreamReader streamReader = new StreamReader(reader, Encoding.UTF8);
+                            string jsonString = streamReader.ReadToEnd();
+                            byte[] byteArray = Encoding.UTF8.GetBytes(jsonString);
+                            MemoryStream stream = new MemoryStream(byteArray);
                             DataContractJsonSerializer input;
                             input = new DataContractJsonSerializer(typeof(CourseWork));
-                            courseWork = (CourseWork)input.ReadObject(reader);
+                            courseWork = (CourseWork)input.ReadObject(stream);
                             reader.Close();
                         }
                         catch (IOException)
                         {
                             Console.WriteLine("Invalid file name.\n");
-                            break;
+                        }
+                        catch (SerializationException e) {
+                            Console.WriteLine("Serialization exception.\n");
+                            Console.WriteLine(e);
                         }
                         break;
                     case "2": // Read course work from XML file
@@ -92,7 +98,6 @@ namespace CourseWorkClassMenu
                         catch (IOException)
                         {
                             Console.WriteLine("Invalid file name.\n");
-                            break;
                         }
                         break;
                     case "3": // Write course work to JSON file
