@@ -131,7 +131,7 @@ namespace CourseWorkClassMenu
                         Submission s = courseWork.FindSubmission(assignment);
                         if (s != null)
                         {
-                            s.ToString();
+                            Console.WriteLine(s);
                         }
                         else
                         {
@@ -146,6 +146,7 @@ namespace CourseWorkClassMenu
                         break;
                 }
 
+                Console.WriteLine();
             } while (menuSelection != "7"); // display menu until user enters "16" to exit
         }
     }
