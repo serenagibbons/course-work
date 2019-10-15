@@ -124,6 +124,7 @@ namespace CourseWorkClassMenu
                         break;
                     case "5": // Display course work data on screen
                         Console.WriteLine(courseWork);
+                        Console.WriteLine("Overall grade: " + courseWork.CalculateGrade());
                         break;
                     case "6": // Find submission
                         Console.Write("Enter assignment name: ");

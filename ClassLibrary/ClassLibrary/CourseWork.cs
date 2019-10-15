@@ -95,23 +95,21 @@ namespace ClassLibrary
         // grade is a weighted average. The weights are the category percentages.
         //*****************************************************************************
 
-            // Category FindCategory(string cName); -- look through Category list checking name for "Homework", "Exams", ...
-            // 
             // double SubmissionAverage(string cName); -- look through Submission list checking for category name, 
             // if yes add grade to the total and incremement count
-        public double CalculateGrade()                 // FIX ALL OF THIS
+        public double CalculateGrade()                 
         {
             // cateogry weights
-            double examWeight = categories[0].Percentage;
-            double homeworkWeight = categories[1].Percentage;
-            double quizWeight = categories[2].Percentage;
-            double labWeight = categories[3].Percentage;
+            double examWeight = FindCategoryWeight("Exams") / 100;
+            double homeworkWeight = FindCategoryWeight("Homework") / 100;
+            double quizWeight = FindCategoryWeight("Quizzes") / 100;
+            double labWeight = FindCategoryWeight("Labs") / 100;
 
             // category averages
-            double examAvg = submissions[0].Grade;
-            double homeworkAvg = submissions[1].Grade;
-            double quizAvg = submissions[2].Grade;
-            double labAvg = submissions[3].Grade;
+            double examAvg = CalcSubmissionAverage("Exams");
+            double homeworkAvg = CalcSubmissionAverage("Homework");
+            double quizAvg = CalcSubmissionAverage("Quizzes");
+            double labAvg = CalcSubmissionAverage("Labs");
 
             // return weighted average
             double average = examWeight * examAvg + homeworkWeight * homeworkAvg + quizWeight * quizAvg + labWeight * labAvg;
@@ -152,10 +150,53 @@ namespace ClassLibrary
                 submissionStrings += submissions[i].Grade + "\n";
             }
 
-            return "course name: " + courseName
+            return "course name: " + courseName + "\n"
                 + "\ncategories:\n" + categoryStrings
                 + "\nassignments:\n" + assignmentStrings   
                 + "\nsubmissions:\n" + submissionStrings; 
+        }
+
+        //*****************************************************************************
+        // Method: FindCategory
+        //
+        // Purpose: Takes a category name as a parameter and returns the category
+        // with the given name. If it is not found then null is returned.
+        //*****************************************************************************
+        public double FindCategoryWeight(String cn)
+        {
+            for (int i = 0; i < categories.Count; ++i)
+            {
+                if (categories[i].Name == cn)
+                {
+                    return categories[i].Percentage;
+                }
+            }
+
+            // if method has not returned after for loop, assignment has not been found
+            return 0;
+        }
+
+        //*****************************************************************************
+        // Method: SubmissionAverage
+        //
+        // Purpose: Takes a category name as a parameter and returns the average of
+        // all submissions in the given category. If category name is not found, then 
+        // 0 is returned.
+        //*****************************************************************************
+        double CalcSubmissionAverage(string cName)
+        {
+            double total = 0;
+            int numSubmissions = 0;
+
+            for (int i = 0; i < submissions.Count; ++i)
+            {
+                if (submissions[i].CategoryName == cName)
+                {
+                    total += submissions[i].Grade;
+                    ++numSubmissions;
+                }
+            }
+            return total / numSubmissions ;
         }
         #endregion
     }
