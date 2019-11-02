@@ -45,11 +45,13 @@ namespace CourseWorkGUI
         //*****************************************************************************
         // Method: OpenButton_Click
         //
-        // Purpose: Opens the file dialog to allow the user to select a file to open.
+        // Purpose: Opens the file dialog to allow the user to select a json file to open.
         //*****************************************************************************
         private void OpenButton_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = Directory.GetCurrentDirectory();
+            openFileDialog.Filter = "JSON files (*.json)|*.json";
             if (openFileDialog.ShowDialog() == true)
             {
                 string fileName = openFileDialog.FileName;
@@ -74,6 +76,12 @@ namespace CourseWorkGUI
                     Console.WriteLine("Invalid file name.\n");
                     return;
                 }
+
+                // clear all submission textboxes
+                txtAssignmentName.Clear();
+                txtSubAssignment.Clear();
+                txtSubCateogry.Clear();
+                txtSubGrade.Clear();
 
                 // display course name and overall grade
                 txtCourseName.Text = courseWork.CourseName;
@@ -113,6 +121,7 @@ namespace CourseWorkGUI
             string assignment = txtAssignmentName.Text;
             Submission submission = courseWork.FindSubmission(assignment);
 
+            // if submission is null clear all submission textboxes
             if (submission == null)
             {
                 txtAssignmentName.Clear();
@@ -121,6 +130,7 @@ namespace CourseWorkGUI
                 txtSubGrade.Clear();
                 return;
             }
+            // submission found, set submission textboxes
             txtSubAssignment.Text = submission.AssignmentName;
             txtSubCateogry.Text = submission.CategoryName;
             txtSubGrade.Text = submission.Grade.ToString();
