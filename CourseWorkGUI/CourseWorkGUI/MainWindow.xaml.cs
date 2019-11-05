@@ -119,6 +119,13 @@ namespace CourseWorkGUI
         private void FindSubmissionButton_Click(object sender, RoutedEventArgs e)
         {
             string assignment = txtAssignmentName.Text;
+            if (assignment == "" || courseWork == null)
+            {
+                txtSubAssignment.Clear();
+                txtSubCateogry.Clear();
+                txtSubGrade.Clear();
+                return;
+            }
             Submission submission = courseWork.FindSubmission(assignment);
 
             // if submission is null clear all submission textboxes
