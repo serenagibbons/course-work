@@ -14,6 +14,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ClassLibrary;
 using System.Data.SqlClient;
+using Microsoft.Win32;
+using System.IO;
+using System.Runtime.Serialization.Json;
 
 namespace CourseWorkGUIv2
 {
@@ -127,7 +130,44 @@ namespace CourseWorkGUIv2
         //*****************************************************************************
         private void ImportItem_Click(object sender, RoutedEventArgs e)
         {
+          
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = Directory.GetCurrentDirectory();
+            openFileDialog.Filter = "JSON files (*.json)|*.json";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string fileName = openFileDialog.FileName;
 
+                // instantiate couseWork
+                courseWork = new CourseWork();
+
+                // try reading from file, if exception thrown, break
+                try
+                {
+                    FileStream reader = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                    DataContractJsonSerializer input;
+                    input = new DataContractJsonSerializer(typeof(CourseWork));
+                    courseWork = (CourseWork)input.ReadObject(reader);
+                    reader.Close();
+                }
+                catch (IOException)
+                {
+                    Console.WriteLine("Invalid file name.\n");
+                    return;
+                }
+
+                // remove all items from listbox
+                while (submissionListBox.Items.Count > 0)
+                {
+                    submissionListBox.Items.RemoveAt(0);
+                }
+
+                // add to submission listview
+                for (int i = 0; i < courseWork.Submissions.Count; ++i)
+                {
+                    submissionListBox.Items.Add(courseWork.Submissions[i].AssignmentName);
+                }
+            }
         }
     }
 }
