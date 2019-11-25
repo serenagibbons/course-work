@@ -1,0 +1,33 @@
+﻿<Window x:Class="CourseWorkGUIv2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CourseWorkGUIv2"
+        mc:Ignorable="d"
+        Icon="grades_icon.png"
+        Title="Course Work GUI v2 - Serena Gibbons" Height="450" Width="800" Loaded="Window_Loaded">
+    <Grid>
+        <ListBox x:Name="submissionListBox" HorizontalAlignment="Left" Height="341" Margin="34,53,0,0" VerticalAlignment="Top" Width="204"/>
+        <Label Content="Submissions" HorizontalAlignment="Left" Margin="34,27,0,0" VerticalAlignment="Top"/>
+        <Label Content="Assignment Name" HorizontalAlignment="Left" Margin="300,53,0,0" VerticalAlignment="Top"/>
+        <Label Content="Category Name" HorizontalAlignment="Left" Margin="300, 83,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.201,-1.372"/>
+        <Label Content="Grade" HorizontalAlignment="Left" Margin="300,113,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="assignmentTextBox" HorizontalAlignment="Left" Height="23" Margin="417,53,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="349"/>
+        <TextBox x:Name="categoryTextBox" HorizontalAlignment="Left" Height="23" Margin="417,83,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="349"/>
+        <TextBox x:Name="gradeTextBox" HorizontalAlignment="Left" Height="23" Margin="417,113,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="349"/>
+        
+        <Menu x:Name="menu" Margin="0,0,0,0" VerticalAlignment="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="Exit" Click="ExitMenu_Handler"/>
+            </MenuItem>
+            <MenuItem Header="Import">
+                <MenuItem Header="Course Work from JSON..." Click="ImportItem_Click"/>
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Header="About..." Click="AboutMenu_Click"/>
+            </MenuItem>
+        </Menu>
+
+    </Grid>
+</Window>
