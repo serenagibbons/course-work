@@ -8,24 +8,24 @@
         Icon="grades_icon.png"
         Title="Course Work GUI v2 - Serena Gibbons" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
-        <ListBox x:Name="submissionListBox" HorizontalAlignment="Left" Height="341" Margin="34,53,0,0" VerticalAlignment="Top" Width="204" SelectionChanged="SubmissionListBox_SelectionChanged" DataContext="{Binding AssignmentName}">
+        <ListBox x:Name="submissionListBox" HorizontalAlignment="Left" Height="332" Margin="34,65,0,0" VerticalAlignment="Top" Width="204" SelectionChanged="SubmissionListBox_SelectionChanged" DataContext="{Binding AssignmentName}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
-                 
+
                         <TextBlock Grid.Column="0" Text="{Binding AssignmentName}" VerticalAlignment="Center"></TextBlock>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Label Content="Submissions" HorizontalAlignment="Left" Margin="34,27,0,0" VerticalAlignment="Top"/>
-        <Label Content="Assignment Name" HorizontalAlignment="Left" Margin="300,53,0,0" VerticalAlignment="Top"/>
-        <Label Content="Category Name" HorizontalAlignment="Left" Margin="300, 83,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.201,-1.372"/>
-        <Label Content="Grade" HorizontalAlignment="Left" Margin="300,113,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="assignmentTextBox" HorizontalAlignment="Left" Height="23" Margin="417,53,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="349" ToolTip="Selected submission's assignment name"/>
-        <TextBox x:Name="categoryTextBox" HorizontalAlignment="Left" Height="23" Margin="417,83,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="349" ToolTip="Selected submission's category name"/>
-        <TextBox x:Name="gradeTextBox" HorizontalAlignment="Left" Height="23" Margin="417,113,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="349" ToolTip="Selected submission's grade"/>
-        
+        <Label Content="Submissions" HorizontalAlignment="Left" Margin="34,39,0,0" VerticalAlignment="Top"/>
+        <Label Content="Assignment Name" HorizontalAlignment="Left" Margin="262,64,0,0" VerticalAlignment="Top" Width="116"/>
+        <Label Content="Category Name" HorizontalAlignment="Left" Margin="262,99,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.201,-1.372" Width="100"/>
+        <Label Content="Grade" HorizontalAlignment="Left" Margin="262,134,0,0" VerticalAlignment="Top" Width="45"/>
+        <TextBox x:Name="assignmentTextBox" HorizontalAlignment="Left" Height="23" Margin="378,65,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="386" ToolTip="Selected submission's assignment name"/>
+        <TextBox x:Name="categoryTextBox" HorizontalAlignment="Left" Height="23" Margin="378,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="386" ToolTip="Selected submission's category name"/>
+        <TextBox x:Name="gradeTextBox" HorizontalAlignment="Left" Height="23" Margin="378,135,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="386" ToolTip="Selected submission's grade"/>
+
         <Menu x:Name="menu" Margin="0,0,0,0" VerticalAlignment="Top">
             <MenuItem Header="File">
                 <MenuItem Header="Exit" Click="ExitMenu_Handler"/>

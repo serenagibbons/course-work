@@ -88,18 +88,27 @@ namespace CourseWorkGUIv2
         //*****************************************************************************
         private void AddData(CourseWork c)
         {
+            // delete all existing records before inserting new data
+            string delete = "DELETE FROM Submission;";
+
+            SqlConnection sqlConn;
+            sqlConn = new SqlConnection(connString);
+            sqlConn.Open();
+
+            SqlCommand command = new SqlCommand(delete, sqlConn);
+            int rowsAffected = command.ExecuteNonQuery();
+
             for (int i = 0; i < c.Submissions.Count; ++i)
             {
                 // sql insert statement to insert input fields into new row
                 string insert = "INSERT INTO Submission (AssignmentName, CategoryName, Grade)" +
                     "VALUES ('" + c.Submissions[i].AssignmentName + "', '" + c.Submissions[i].CategoryName + "', '" + c.Submissions[i].Grade + "');";
 
-                SqlConnection sqlConn;
                 sqlConn = new SqlConnection(connString);
                 sqlConn.Open();
 
-                SqlCommand command = new SqlCommand(insert, sqlConn);
-                int rowsAffected = command.ExecuteNonQuery();
+                command = new SqlCommand(insert, sqlConn);
+                rowsAffected = command.ExecuteNonQuery();
             }
 
         }
@@ -154,12 +163,13 @@ namespace CourseWorkGUIv2
                     Console.WriteLine("Invalid file name.\n");
                     return;
                 }
-
+                   
                 // add data to the database
                 AddData(courseWork);
-
+                
                 // display data from database in the submission listbox
                 DisplayData();
+
             }
         }
 
@@ -170,12 +180,13 @@ namespace CourseWorkGUIv2
         // submission ListBox.
         //*****************************************************************************
         private void SubmissionListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {                
-            // get the item selected               
-            DbDataRecord record = (DbDataRecord) e.AddedItems[0];
+        {
+            if (submissionListBox.SelectedIndex > -1) { 
+                // get the item selected               
+                DbDataRecord record = (DbDataRecord)e.AddedItems[0];
 
-            ShowSubmissionDetails(record);
-
+                ShowSubmissionDetails(record);
+            }
         }
 
         //*****************************************************************************
