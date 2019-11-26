@@ -11,12 +11,12 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using ClassLibrary;
 using System.Data.SqlClient;
 using Microsoft.Win32;
 using System.IO;
 using System.Runtime.Serialization.Json;
+using System.Data.Common;
 
 namespace CourseWorkGUIv2
 {
@@ -29,7 +29,13 @@ namespace CourseWorkGUIv2
 
         string connString = @"server=(LocalDB)\MSSQLLocalDB;" +
                 "database=CourseWork;" +
-                "Trusted_Connection=True;";
+                "Trusted_Connection=True;" +
+                "MultipleActiveResultSets=True;";
+
+        SqlConnection sqlConn;
+        string sql;
+        SqlCommand command;
+        SqlDataReader reader;
 
         //*****************************************************************************
         // Method: MainWindow
@@ -39,7 +45,6 @@ namespace CourseWorkGUIv2
         public MainWindow()
         {
             InitializeComponent();
-            courseWork = new CourseWork();
         }
 
         //*****************************************************************************
@@ -50,8 +55,7 @@ namespace CourseWorkGUIv2
         //*****************************************************************************
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-           // AddData();
-            // DisplayData();
+            DisplayData();
         }
 
         //*****************************************************************************
@@ -62,34 +66,33 @@ namespace CourseWorkGUIv2
         //*****************************************************************************
         private void DisplayData()
         {
-            SqlConnection sqlConn;
+            //SqlConnection sqlConn;
             sqlConn = new SqlConnection(connString);
             sqlConn.Open(); // Open the connection
-
+            
             // Setup the SQL command
-            string sql = "SELECT * FROM Submission";
-            SqlCommand command = new SqlCommand(sql, sqlConn);
+            sql = "SELECT * FROM Submission";
+            command = new SqlCommand(sql, sqlConn);
 
             // Retrieve the data from the database
-            SqlDataReader reader = command.ExecuteReader();
+            reader = command.ExecuteReader();
 
-            // Associate the ListBox with the SqlDataReader, this will automatically populate the ListBox.
-            //submissionListBox.ItemsSource = reader;
-            submissionListBox.Items.Add(reader["AssignmentName"]);
+            // Associate the ListBox with the SqlDataReader
+            submissionListBox.ItemsSource = reader;
         }
 
         //*****************************************************************************
         // Method: AddData
         //
-        // Purpose: Reads in data from the CourseWork object into the database
+        // Purpose: Reads in data from the CourseWork object and adds it to the database
         //*****************************************************************************
-        private void AddData()
+        private void AddData(CourseWork c)
         {
-            for (int i = 0; i < courseWork.Submissions.Count; ++i)
+            for (int i = 0; i < c.Submissions.Count; ++i)
             {
                 // sql insert statement to insert input fields into new row
-                string insert = "INSERT INTO Submission (AssignmnetName, CategoryName, Grade)" +
-                    "VALUES ('" + courseWork.Submissions[i].AssignmentName + "', '" + courseWork.Submissions[i].CategoryName + "', '" + courseWork.Submissions[i].Grade + "');";
+                string insert = "INSERT INTO Submission (AssignmentName, CategoryName, Grade)" +
+                    "VALUES ('" + c.Submissions[i].AssignmentName + "', '" + c.Submissions[i].CategoryName + "', '" + c.Submissions[i].Grade + "');";
 
                 SqlConnection sqlConn;
                 sqlConn = new SqlConnection(connString);
@@ -130,16 +133,12 @@ namespace CourseWorkGUIv2
         //*****************************************************************************
         private void ImportItem_Click(object sender, RoutedEventArgs e)
         {
-          
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.InitialDirectory = Directory.GetCurrentDirectory();
             openFileDialog.Filter = "JSON files (*.json)|*.json";
             if (openFileDialog.ShowDialog() == true)
             {
                 string fileName = openFileDialog.FileName;
-
-                // instantiate couseWork
-                courseWork = new CourseWork();
 
                 // try reading from file, if exception thrown, break
                 try
@@ -156,16 +155,51 @@ namespace CourseWorkGUIv2
                     return;
                 }
 
-                // remove all items from listbox
-                while (submissionListBox.Items.Count > 0)
-                {
-                    submissionListBox.Items.RemoveAt(0);
-                }
+                // add data to the database
+                AddData(courseWork);
 
-                // add to submission listview
-                for (int i = 0; i < courseWork.Submissions.Count; ++i)
+                // display data from database in the submission listbox
+                DisplayData();
+            }
+        }
+
+        //*****************************************************************************
+        // Method: SubmissionListBox_SelectionChanged
+        //
+        // Purpose: Display appropriate data when a submission is selected in the 
+        // submission ListBox.
+        //*****************************************************************************
+        private void SubmissionListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {                
+            // get the item selected               
+            DbDataRecord record = (DbDataRecord) e.AddedItems[0];
+
+            ShowSubmissionDetails(record);
+
+        }
+
+        //*****************************************************************************
+        // Method: ShowSubmissionDetails
+        //
+        // Purpose: Set textbox text's of the selected submission object
+        //*****************************************************************************
+        private void ShowSubmissionDetails(DbDataRecord record) 
+        {
+            // Setup the SQL command
+            string sql = "SELECT * FROM Submission WHERE AssignmentName = '" + record.GetString(0) + "';";
+            SqlCommand command = new SqlCommand(sql, sqlConn);
+
+            // Retrieve the data from the database
+            SqlDataReader reader = command.ExecuteReader();
+            
+            if (reader.HasRows)
+            {
+                while (reader.Read())
                 {
-                    submissionListBox.Items.Add(courseWork.Submissions[i].AssignmentName);
+                    // set text fields
+                    assignmentTextBox.Text = reader.GetString(0);
+                    categoryTextBox.Text = reader.GetString(1);
+                    gradeTextBox.Text = reader.GetDouble(2).ToString();
                 }
             }
         }
