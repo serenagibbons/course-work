@@ -95,8 +95,6 @@ namespace ClassLibrary
         // grade is a weighted average. The weights are the category percentages.
         //*****************************************************************************
 
-            // double SubmissionAverage(string cName); -- look through Submission list checking for category name, 
-            // if yes add grade to the total and incremement count
         public double CalculateGrade()                 
         {
             // cateogry weights
@@ -177,7 +175,7 @@ namespace ClassLibrary
         }
 
         //*****************************************************************************
-        // Method: SubmissionAverage
+        // Method: CalcSubmissionAverage
         //
         // Purpose: Takes a category name as a parameter and returns the average of
         // all submissions in the given category. If category name is not found, then 

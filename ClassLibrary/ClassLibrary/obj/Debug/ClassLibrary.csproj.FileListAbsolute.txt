@@ -10,8 +10,3 @@ C:\Users\seren\OneDrive\Documents\BCS426\ClassLibrary\ClassLibrary\obj\Debug\Cla
 C:\Users\seren\OneDrive\Documents\BCS426\ClassLibrary\ClassLibrary\obj\Debug\ClassLibrary.csproj.CoreCompileInputs.cache
 C:\Users\seren\OneDrive\Documents\BCS426\ClassLibrary\ClassLibrary\obj\Debug\ClassLibrary.dll
 C:\Users\seren\OneDrive\Documents\BCS426\ClassLibrary\ClassLibrary\obj\Debug\ClassLibrary.pdb
-C:\Users\seren\OneDrive\Documents\BCS426\CourseWork\ClassLibrary\ClassLibrary\bin\Debug\ClassLibrary.dll
-C:\Users\seren\OneDrive\Documents\BCS426\CourseWork\ClassLibrary\ClassLibrary\bin\Debug\ClassLibrary.pdb
-C:\Users\seren\OneDrive\Documents\BCS426\CourseWork\ClassLibrary\ClassLibrary\obj\Debug\ClassLibrary.csproj.CoreCompileInputs.cache
-C:\Users\seren\OneDrive\Documents\BCS426\CourseWork\ClassLibrary\ClassLibrary\obj\Debug\ClassLibrary.dll
-C:\Users\seren\OneDrive\Documents\BCS426\CourseWork\ClassLibrary\ClassLibrary\obj\Debug\ClassLibrary.pdb
